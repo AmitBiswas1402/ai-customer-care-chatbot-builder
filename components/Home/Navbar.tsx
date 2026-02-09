@@ -32,6 +32,20 @@ const Navbar = () => {
             Pricing
           </Link>
         </div>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/api/login"
+            className="text-sm font-medium text-zinc-400 hover:text-white transition-colors border border-zinc-700 px-4 py-2 rounded-md"
+          >
+            Sign In
+          </Link>
+          <Link
+            href="/api/register"
+            className="px-4 py-2 rounded-md bg-linear-to-r from-blue-500 to-green-500 text-white text-sm font-medium hover:from-blue-600 hover:to-green-600 transition-colors"
+          >
+            Get Started
+          </Link>
+        </div>
       </div>
     </div>
   );
