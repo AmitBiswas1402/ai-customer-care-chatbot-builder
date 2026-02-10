@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
+import Image from "next/image";
 
 const Hero = () => {
   return (
@@ -33,7 +34,7 @@ const Hero = () => {
           <Button
             size={"lg"}
             className="px-9 py-3 rounded-4xl bg-linear-to-r from-blue-500 to-green-500 text-white text-base font-medium hover:from-blue-600 hover:to-green-600 transition-colors inline-flex items-center gap-2"
-            >
+          >
             Start for Free
             <ArrowRight className="w-4 h-4" />
           </Button>
@@ -51,7 +52,50 @@ const Hero = () => {
       <div className="max-w-3xl mx-auto relative z-10">
         <div className="absolute inset-0 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none"></div>
         <div className="rounded-2xl p-1 md:p-2 relative overflow-hidden ring-1 ring-white/10 bg-black shadow-2xl">
-          
+          <div className="flex flex-col h-125 md:h-150 w-full bg-black rounded-xl overflow-hidden">
+            <div className="h-14 border-b border-white/5 flex items-center justify-between px-6 bg-black shrink-0">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-sm font-medium text-zinc-300">
+                  AI Support Chat Bot
+                </span>
+              </div>
+            </div>
+
+            <div className="flex-1 p-6 overflow-y-auto bg-zinc-950/30">
+              <div className="flex w-full flex-col items-start">
+                <div className="flex max-w-[85%] gap-3 flex-row">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      height={40}
+                      width={40}
+                      alt="AI Support Chat Bot"
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="p-4 rounded-2xl text-sm leading-relaxed shadow-sm bg-white text-zinc-900">
+                      Hi there, how can I help you today?
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 mt-1 ml-1">
+                      <span className="px-3 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/50 text-zinc-300 text-xs font-medium cursor-default">
+                        FAQ
+                      </span>
+                      <span className="px-3 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/50 text-zinc-300 text-xs font-medium cursor-default">
+                        Pricing 
+                      </span>
+                      <span className="px-3 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/50 text-zinc-300 text-xs font-medium cursor-default">
+                        Support
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
