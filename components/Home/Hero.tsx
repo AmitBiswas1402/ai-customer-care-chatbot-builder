@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Send, User } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 
@@ -76,7 +76,7 @@ const Hero = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <div className="p-4 rounded-2xl text-sm leading-relaxed shadow-sm bg-white text-zinc-900">
+                    <div className="p-4 rounded-2xl text-sm leading-relaxed shadow-sm bg-white text-zinc-900 rounded-tl-sm">
                       Hi there, how can I help you today?
                     </div>
 
@@ -85,13 +85,59 @@ const Hero = () => {
                         FAQ
                       </span>
                       <span className="px-3 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/50 text-zinc-300 text-xs font-medium cursor-default">
-                        Pricing 
+                        Pricing
                       </span>
                       <span className="px-3 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/50 text-zinc-300 text-xs font-medium cursor-default">
                         Support
                       </span>
                     </div>
                   </div>
+                </div>
+
+                <div className="flex w-full flex-col items-end">
+                  <div className="flex max-w-[85%] gap-3 flex-row-reverse">
+                    <div className="w-9 h-9 min-w-9 min-h-9 rounded-full flex items-center justify-center shrink-0 border-white/5 bg-zinc-800">
+                      <User className="w-4 h-4 text-zinc-400" />
+                    </div>
+                    <div className="p-4 rounded-2xl text-sm leading-relaxed shadow-sm bg-zinc-800 text-zinc-200 rounded-tr-sm">
+                      Tell me more about this application and how it works?
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex w-full flex-col items-start mt-5">
+                  <div className="flex max-w-[85%] gap-3 flex-row">
+                    <div className="w-9 h-9 min-w-9 min-h-9 rounded-full overflow-hidden shrink-0">
+                      <Image
+                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        height={40}
+                        width={40}
+                        alt="AI Support Chat Bot"
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="p-4 rounded-2xl text-sm leading-relaxed shadow-sm bg-white text-zinc-900 rounded-tl-sm">
+                        This is a demo of an AI-powered support chat bot built
+                        using React, Tailwind CSS, and Next.js. It simulates a
+                        conversation between a user and an AI support agent,
+                        showcasing how the bot can assist with common queries
+                        and provide helpful responses.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 bg-black border-t border-white/5 shrink-0">
+              <div className="relative">
+                <div className="min-h-12.5 w-full px-4 py-3 text-sm bg-zinc-900/50 border-white/10 rounded-xl text-zinc-500 flex items-center justify-between">
+                  <span>Type your message...</span>
+                  <Button className="h-8 w-8 rounded-lg bg-zinc-800 flex items-center text-zinc-500 cursor-default">
+                    <Send className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
             </div>
