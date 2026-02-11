@@ -4,147 +4,113 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
+    <section className="relative pt-28 sm:pt-32 md:pt-40 pb-20 px-4 sm:px-6 overflow-hidden">
+
+      {/* CENTER CONTENT */}
       <div className="max-w-4xl mx-auto text-center relative z-20">
-        {/* Version tag */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8 animate-float">
-          <span className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34, 197, 94, 0.4)]"></span>
-          <span className="text-sm text-zinc-300 tracking-wide font-light">
-            Version 1.0.0 - Launched!
+
+        {/* TAG */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+          <span className="text-xs sm:text-sm text-zinc-300">
+            Version 1.0.0 — Launched!
           </span>
         </div>
 
-        {/* Hero title */}
-        <h1 className="text-5xl md:text-7xl font-medium tracking-tight mb-6 leading-[1.1]">
-          Human Support,
+        {/* TITLE */}
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-medium tracking-tight mb-6 leading-[1.1]">
+          Human Support
           <br />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-green-400">
+          <span className="bg-linear-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
             AI Powered
           </span>
         </h1>
 
-        {/* Hero description */}
-        <p className="text-lg md:text-xl text-zinc-500 font-sans mb-10 max-w-2xl mx-auto leading-relaxed">
+        {/* DESC */}
+        <p className="text-base sm:text-lg md:text-xl text-zinc-500 mb-10 max-w-2xl mx-auto">
           Instantly resolve customer questions with assistance that reads docs
-          and speaks with empathy and keep patience.
+          and responds with empathy.
         </p>
 
-        {/* Hero Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-          <Button
-            size={"lg"}
-            className="px-9 py-3 rounded-4xl bg-linear-to-r from-blue-500 to-green-500 text-white text-base font-medium hover:from-blue-600 hover:to-green-600 transition-colors inline-flex items-center gap-2"
-          >
+        {/* BUTTONS */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <Button className="px-8 py-3 rounded-full bg-linear-to-r from-blue-500 to-green-500">
             Start for Free
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
+
           <Button
-            size={"lg"}
-            className="text-base font-medium text-zinc-400 hover:text-white transition-colors border border-zinc-700 px-9 py-4 rounded-4xl"
-            variant={"outline"}
+            variant="outline"
+            className="px-8 py-3 rounded-full border border-zinc-700 text-zinc-300"
           >
             View Demo
           </Button>
         </div>
       </div>
 
-      {/* Floating chat interface Visualization */}
-      <div className="max-w-3xl mx-auto relative z-10">
-        <div className="absolute inset-0 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none"></div>
-        <div className="rounded-2xl p-1 md:p-2 relative overflow-hidden ring-1 ring-white/10 bg-black shadow-2xl">
-          <div className="flex flex-col h-125 md:h-150 w-full bg-black rounded-xl overflow-hidden">
-            <div className="h-14 border-b border-white/5 flex items-center justify-between px-6 bg-black shrink-0">
+      {/* CHAT PREVIEW */}
+      <div className="max-w-3xl mx-auto relative z-10 px-2">
+        <div className="rounded-2xl p-1 bg-black shadow-2xl ring-1 ring-white/10">
+
+          <div className="flex flex-col h-105 sm:h-130 md:h-150 bg-black rounded-xl overflow-hidden">
+
+            {/* HEADER */}
+            <div className="h-12 border-b border-white/5 flex items-center px-4">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-sm font-medium text-zinc-300">
-                  AI Support Chat Bot
-                </span>
+                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                <span className="text-sm text-zinc-300">AI Support Bot</span>
               </div>
             </div>
 
-            <div className="flex-1 p-6 overflow-y-auto bg-zinc-950/30">
-              <div className="flex w-full flex-col items-start">
-                <div className="flex max-w-[85%] gap-3 flex-row">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden">
-                    <Image
-                      src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                      height={40}
-                      width={40}
-                      alt="AI Support Chat Bot"
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  </div>
+            {/* CHAT BODY */}
+            <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-6">
 
-                  <div className="space-y-2">
-                    <div className="p-4 rounded-2xl text-sm leading-relaxed shadow-sm bg-white text-zinc-900 rounded-tl-sm">
-                      Hi there, how can I help you today?
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 mt-1 ml-1">
-                      <span className="px-3 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/50 text-zinc-300 text-xs font-medium cursor-default">
-                        FAQ
-                      </span>
-                      <span className="px-3 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/50 text-zinc-300 text-xs font-medium cursor-default">
-                        Pricing
-                      </span>
-                      <span className="px-3 py-1.5 rounded-full border border-zinc-700 bg-zinc-800/50 text-zinc-300 text-xs font-medium cursor-default">
-                        Support
-                      </span>
-                    </div>
-                  </div>
+              {/* BOT */}
+              <div className="flex gap-3 max-w-[90%]">
+                <div className="size-9 rounded-full overflow-hidden shrink-0">
+                  <Image
+                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde"
+                    width={40}
+                    height={40}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                <div className="flex w-full flex-col items-end">
-                  <div className="flex max-w-[85%] gap-3 flex-row-reverse">
-                    <div className="w-9 h-9 min-w-9 min-h-9 rounded-full flex items-center justify-center shrink-0 border-white/5 bg-zinc-800">
-                      <User className="w-4 h-4 text-zinc-400" />
-                    </div>
-                    <div className="p-4 rounded-2xl text-sm leading-relaxed shadow-sm bg-zinc-800 text-zinc-200 rounded-tr-sm">
-                      Tell me more about this application and how it works?
-                    </div>
-                  </div>
+                <div className="bg-white text-zinc-900 p-3 sm:p-4 rounded-2xl text-sm">
+                  Hi there, how can I help you today?
                 </div>
+              </div>
 
-                <div className="flex w-full flex-col items-start mt-5">
-                  <div className="flex max-w-[85%] gap-3 flex-row">
-                    <div className="w-9 h-9 min-w-9 min-h-9 rounded-full overflow-hidden shrink-0">
-                      <Image
-                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        height={40}
-                        width={40}
-                        alt="AI Support Chat Bot"
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    </div>
+              {/* USER */}
+              <div className="flex justify-end">
+                <div className="flex gap-3 max-w-[90%] flex-row-reverse">
+                  <div className="size-9 rounded-full bg-zinc-800 flex items-center justify-center">
+                    <User className="w-4 h-4 text-zinc-400" />
+                  </div>
 
-                    <div className="space-y-2">
-                      <div className="p-4 rounded-2xl text-sm leading-relaxed shadow-sm bg-white text-zinc-900 rounded-tl-sm">
-                        This is a demo of an AI-powered support chat bot built
-                        using React, Tailwind CSS, and Next.js. It simulates a
-                        conversation between a user and an AI support agent,
-                        showcasing how the bot can assist with common queries
-                        and provide helpful responses.
-                      </div>
-                    </div>
+                  <div className="bg-zinc-800 text-zinc-200 p-3 sm:p-4 rounded-2xl text-sm">
+                    Tell me more about this application.
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 bg-black border-t border-white/5 shrink-0">
-              <div className="relative">
-                <div className="min-h-12.5 w-full px-4 py-3 text-sm bg-zinc-900/50 border-white/10 rounded-xl text-zinc-500 flex items-center justify-between">
-                  <span>Type your message...</span>
-                  <Button className="h-8 w-8 rounded-lg bg-zinc-800 flex items-center text-zinc-500 cursor-default">
-                    <Send className="w-4 h-4" />
-                  </Button>
+            {/* INPUT */}
+            <div className="p-3 border-t border-white/5">
+              <div className="flex items-center bg-zinc-900 rounded-xl px-4 py-3 text-sm text-zinc-500">
+                Type your message...
+                <div className="ml-auto size-8 rounded-lg bg-zinc-800 flex items-center justify-center">
+                  <Send className="w-4 h-4" />
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </section>
   );
 };
+
 export default Hero;
