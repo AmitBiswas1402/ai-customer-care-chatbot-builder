@@ -1,6 +1,8 @@
 import Features from "@/components/Home/Features"
 import Hero from "@/components/Home/Hero"
+import Integration from "@/components/Home/Integration"
 import Navbar from "@/components/Home/Navbar"
+import Pricing from "@/components/Home/Pricing"
 import SocialProof from "@/components/Home/Social"
 
 const HomePage = () => {
@@ -10,6 +12,8 @@ const HomePage = () => {
       <Hero />
       <SocialProof />
       <Features />
+      <Integration />
+      <Pricing />
     </main>
   )
 }
