@@ -51,8 +51,24 @@ export async function GET(req: NextRequest) {
         await db.insert(User).values({
             name: user.name || "anonymous",
             email: user.email,
+            organizatin_id: organizationId,
         });        
     }
+
+    const response = NextResponse.redirect(new URL("/", req.url))
+    const userSession = {
+      email: user.email,
+      organization_id: organizationId,
+    }
+
+    response.cookies.set("user_session", JSON.stringify(userSession), {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax", 
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    });
+
+    return response;
   } catch (error) {
     console.error("Error during authentication callback:", error);
     return NextResponse.json(

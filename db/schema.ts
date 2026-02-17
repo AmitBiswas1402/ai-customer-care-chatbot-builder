@@ -1,8 +1,9 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text } from "drizzle-orm/pg-core";
 
 export const user = pgTable("users", {
   id: text().primaryKey().default(sql`gen_random_uuid()`),
+  organizatin_id: text("organization_id").notNull(),
   name: text("name"),
   email: text("email").notNull().unique(),
   image: text("image"),

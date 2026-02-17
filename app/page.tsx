@@ -4,11 +4,14 @@ import Integration from "@/components/Home/Integration"
 import Navbar from "@/components/Home/Navbar"
 import Pricing from "@/components/Home/Pricing"
 import SocialProof from "@/components/Home/Social"
+import { isAuthorized } from "@/lib/isAuthorized"
 
-const HomePage = () => {
+const HomePage = async () => {
+  const user = await isAuthorized();
+
   return (
     <main className="w-full flex flex-col relative z-10">
-      <Navbar />
+      <Navbar user={user} />
       <Hero />
       <SocialProof />
       <Features />
