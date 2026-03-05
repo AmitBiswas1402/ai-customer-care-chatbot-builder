@@ -6,6 +6,7 @@ import {
   Building2,
   ChevronLeft,
   Globe,
+  Icon,
   LinkIcon,
   Sparkles,
 } from "lucide-react";
@@ -34,6 +35,7 @@ const InitialPage = () => {
 
   const progress = ((currentStep + 1) / STEPS.length) * 100;
   const stepData = STEPS[currentStep];
+  const Icon = stepData.icon;
 
   useEffect(() => {
     setTimeout(() => {
@@ -87,17 +89,21 @@ const InitialPage = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+
+    
   };
 
   useEffect(() => {
     setTimeout(() => {
       if (inputRef.current) {
-        inputRef.current.focus();        
+        inputRef.current.focus();
       }
-    }, 300)
-  }, [currentStep])
+    }, 300);
+  }, [currentStep]);
 
-    const isStepValid = currentStep >= 2 || (formData[stepData.field] && formData[stepData.field].trim() !== "");
+  const isStepValid =
+    currentStep >= 2 ||
+    (formData[stepData.field] && formData[stepData.field].trim() !== "");
 
   return (
     <div className="w-full max-w-xl mx-auto min-h-screen flex flex-col justify-center">
@@ -160,38 +166,92 @@ const InitialPage = () => {
             </div>
 
             <div className="relative group">
-                  {stepData.type === "textarea" ? (
-                  <Textarea
-                    ref={inputRef as any}
-                    value={formData[stepData.field] as string}
-                    onChange={(e) => {
+              {stepData.type === "textarea" ? (
+                <Textarea
+                  ref={inputRef as any}
+                  value={formData[stepData.field] as string}
+                  onChange={(e) => {
                     setFormData({
                       ...formData,
                       [stepData.field]: e.target.value,
                     });
-                    }}
-                    onKeyDown={handleKeyDown}
-                    placeholder={stepData.placeholder}
-                    autoFocus
-                    className="w-full bg-zinc-900/80 backdrop-blur-sm border border-zinc-700/50 rounded-xl text-white text-lg px-5 py-4 resize-none min-h-30 transition-all duration-300 placeholder:text-zinc-600 focus:border-indigo-500/70 focus:ring-2 focus:ring-indigo-500/20 focus:bg-zinc-900 hover:border-zinc-600 shadow-sm"
-                  />
-                  ) : (
-                  <Input
-                    ref={inputRef as any}
-                    type={stepData.type}
-                    value={formData[stepData.field] as string}
-                    onChange={(e) => {
+                  }}
+                  onKeyDown={handleKeyDown}
+                  placeholder={stepData.placeholder}
+                  autoFocus
+                  className="
+      w-full
+      bg-transparent
+      border-none border-zinc-700
+      text-white text-xl
+      py-3
+      outline-none
+      resize-none
+      min-h-24
+      placeholder:text-zinc-500
+      transition-all duration-300
+      focus:border-pink-500
+      caret-pink-500
+    "
+                />
+              ) : (
+                <Input
+                  ref={inputRef as any}
+                  type={stepData.type}
+                  value={formData[stepData.field] as string}
+                  onChange={(e) => {
                     setFormData({
                       ...formData,
                       [stepData.field]: e.target.value,
                     });
-                    }}
-                    onKeyDown={handleKeyDown}
-                    placeholder={stepData.placeholder}
-                    autoFocus
-                    className="w-full bg-zinc-900/80 backdrop-blur-sm border border-zinc-700/50 rounded-xl text-white text-lg px-5 py-4 h-14 transition-all duration-300 placeholder:text-zinc-600 focus:border-indigo-500/70 focus:ring-2 focus:ring-indigo-500/20 focus:bg-zinc-900 hover:border-zinc-600 shadow-sm"
-                  />
-                  )}
+                  }}
+                  onKeyDown={handleKeyDown}
+                  placeholder={stepData.placeholder}
+                  autoFocus
+                  className="
+      w-full
+      bg-transparent
+      border-none border-zinc-700
+      text-white text-2xl
+      py-3
+      outline-none
+      placeholder:text-zinc-500
+      transition-all duration-300
+      focus:border-pink-500
+      caret-pink-500
+    "
+                />
+              )}
+
+              <div className="absolute pr-2 right-0 top-1/2 -translate-y-1/2 text-zinc-600 pointer-events-none">
+                <Icon className="w-6 h-6" />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-8">
+              <div className="hidden sm:flex items-center gap-2 text-xs text-zinc-600">
+                {stepData.type === "textarea" ? (
+                  <>
+                    <Command className="w-3 h-3" />
+                    <span>+ Enter</span>
+                  </>
+                ) : (
+                  <span>Press Enter to continue</span>                  
+                )}
+              </div>
+
+              <Button
+                onClick={handleNext}
+                disabled={!isStepValid}
+                className={cn("rounded-full px-8 py-6 text-base font-medium transition-all duration-300", !isStepValid ? "bg-zinc-800 hover:bg-zinc-800 cursor-not-allowed" : "bg-white text-black hover:bg-zinc-200 hover:shadow-lg hover:shadow-white/10")}
+              >
+                {currentStep === STEPS.length - 1 ? "Submit" : "Continue"}
+                {currentStep === STEPS.length - 1 ? (
+                  <Spakles className="w-4 h-4 ml-2 animate-pulse" />
+                ) : (
+                  <ChevronRight className="w-5 h-5 ml-2" />
+                )}
+              </Button>
             </div>
           </div>
         </div>
