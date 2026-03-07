@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import {
   Building2,
   ChevronLeft,
+  ChevronRight,
+  Command,
   Globe,
   Icon,
   LinkIcon,
@@ -247,7 +249,7 @@ const InitialPage = () => {
               >
                 {currentStep === STEPS.length - 1 ? "Submit" : "Continue"}
                 {currentStep === STEPS.length - 1 ? (
-                  <Spakles className="w-4 h-4 ml-2 animate-pulse" />
+                  <Sparkles className="w-4 h-4 ml-2 animate-pulse" />
                 ) : (
                   <ChevronRight className="w-5 h-5 ml-2" />
                 )}

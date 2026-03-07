@@ -9,3 +9,12 @@ export const user = pgTable("users", {
   image: text("image"),
   created_at: text("created_at").default(sql`now()`),
 });
+
+export const metadata = pgTable("metadata", {
+  id: text().primaryKey().default(sql`gen_random_uuid()`),
+  user_email: text("user_email").notNull(),
+  business_name: text("business_name").notNull(),
+  website_url: text("website_url").notNull(),
+  external_links: text("external_links"),
+  created_at: text("created_at").default(sql`now()`),
+})
