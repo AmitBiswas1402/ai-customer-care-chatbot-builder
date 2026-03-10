@@ -32,6 +32,7 @@ const DashboardPage = () => {
       </div>
       ) : (
         <>
+          {/* Render your main dashboard content here */}
           
         </>
       )}
