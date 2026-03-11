@@ -1,3 +1,4 @@
+import Sidebar from "@/components/Dashboard/Sidebar";
 import { cookies } from "next/headers";
 
 export const metadata = {
