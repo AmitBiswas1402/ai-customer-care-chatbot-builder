@@ -1,4 +1,4 @@
-import { Building2, Globe, LinkIcon } from "lucide-react";
+import { BookOpen, Bot, Building2, Globe, Layers, LayoutDashboard, LinkIcon, MessageSquare, Settings } from "lucide-react";
 
 interface InitialData {
   businessName: string;
@@ -39,3 +39,12 @@ export const STEPS = [
     field: "externalLinks" as keyof InitialData,
   },
 ];
+
+export const SIDEBAR_ITEMS = [
+  {label: "Dashboard", href: "/dashboard", icon: LayoutDashboard},
+  {label: "Knoledge", href: "/dashboard/knowledge", icon: BookOpen},
+  {label: "Sections", href: "/dashboard/sections", icon: Layers},
+  {label: "Chatbots", href: "/dashboard/chatbots", icon: Bot},
+  {label: "Conversations", href: "/dashboard/conversations", icon: MessageSquare},
+  {label: "Settings", href: "/dashboard/settings", icon: Settings},
+]
