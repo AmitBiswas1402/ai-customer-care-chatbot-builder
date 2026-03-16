@@ -5,15 +5,19 @@ import { useEffect, useState } from "react";
 
 const DashboardPage = () => {
   const [isMetadataAvailable, setisMetadataAvailable] = useState(false);
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     const fetchMetadata = async () => {
-      const response = await fetch("/api/metadata/fetch");
-      const data = await response.json();
-
-      setisMetadataAvailable(data.exists);
-      setisLoading(false);
+      try {
+        const response = await fetch("/api/metadata/fetch");
+        const data = await response.json();
+        setisMetadataAvailable(data.exists);
+      } catch (error) {
+        console.error("Error fetching metadata:", error);
+      } finally {
+        setisLoading(false);
+      }
     };
     fetchMetadata();
   }, []);

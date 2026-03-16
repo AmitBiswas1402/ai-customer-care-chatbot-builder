@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { use, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 import { STEPS } from "@/constants/lib";
@@ -24,6 +25,7 @@ interface InitialData {
 }
 
 const InitialPage = () => {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -104,9 +106,13 @@ const InitialPage = () => {
       })
     })    
 
-    await response.json();
-    setIsSubmitting(false);
-    window.location.reload();
+    const data = await response.json();
+    if (response.ok) {
+      router.refresh();
+    } else {
+      setIsSubmitting(false);
+      console.error("Error submitting form:", data.error);
+    }
   };
 
   useEffect(() => {
