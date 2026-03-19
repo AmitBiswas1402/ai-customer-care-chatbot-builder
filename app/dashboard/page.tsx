@@ -35,10 +35,9 @@ const DashboardPage = () => {
         <InitialPage />
       </div>
       ) : (
-        <>
-          {/* Render your main dashboard content here */}
-          
-        </>
+        <div className="flex-1 flex items-center justify-center p-4 min-h-[calc(100vh-64px)]">
+          {/* <p className="text-zinc-500 text-sm">Select an option from the sidebar</p> */}
+        </div>
       )}
     </div>
   );

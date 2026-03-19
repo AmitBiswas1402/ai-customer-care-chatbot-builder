@@ -26,7 +26,6 @@ export default async function DashboardLayout({
       {metadataCookie?.value ? (<>
         <Sidebar metadata={metadata} />
         <div className="flex-1 flex flex-col md:ml-64 relative min-h-screen transition-all duration-300">
-          <Header metadata={metadata} />
           <main className="flex-1">{children}</main>
         </div>
       </>) : (children)}
