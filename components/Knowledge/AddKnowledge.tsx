@@ -6,9 +6,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Alert, AlertDescription } from "../ui/alert";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, FileText, Globe } from "lucide-react";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 
 interface AddKnowledgeModalProps {
   isOpen: boolean;
@@ -94,6 +97,72 @@ const AddKnowledge = ({
                 </AlertDescription>
               </Alert>
             )}
+
+            <TabsContent
+              value="website"
+              className="mt-0 space-y-4 animate-in fade-in duration-300"
+            >
+              <div className="p-4 border border-white/10 rounded-lg bg-indigo-500/10 text-indigo-200 text-sm flex gap-3">
+                <Globe className="h-5 w-5 shrink-0" />
+                <div>
+                  <p className="font-medium">Crawl Website</p>
+                  <p className="text-xs text-indigo-300/80 mt-1 leading-relaxed">
+                    Enter the URL of a website to crawl its content and train
+                    your assistant with the information found on that site.
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <Label>Website URL</Label>
+                <Input
+                  placeholder="https://example.com"
+                  value={websiteUrl}
+                  className="bg-white/5 border-white/10"
+                  onChange={(e) => {
+                    setWebsiteUrl(e.target.value);
+                    if (error) setError(null);
+                  }}
+                />
+              </div>
+            </TabsContent>
+
+            <TabsContent
+              value="text"
+              className="mt-0 space-y-4 animate-in fade-in duration-300"
+            >
+              <div className="p-4 border border-white/10 rounded-lg bg-indigo-500/10 text-indigo-200 text-sm flex gap-3">
+                <FileText className="h-5 w-5 shrink-0" />
+                <div>
+                  <p className="font-medium">Crawl Website</p>
+                  <p className="text-xs text-indigo-300/80 mt-1 leading-relaxed">
+                    Enter the URL of a website to crawl its content and train
+                    your assistant with the information found on that site.
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <Label>Title</Label>
+                <Input
+                  placeholder="e.g. Refund Policy"
+                  className="bg-white/5 border-white/10"
+                  value={docsTitle}
+                  onChange={(e) => {
+                    setDocsTitle(e.target.value);
+                  }}
+                />
+              </div>
+               <div className="space-y-3">
+                <Label>Content</Label>
+                <Textarea
+                  placeholder="Paste text here..."
+                  className="bg-white/5 border-white/10 h-32 resize-none"
+                  value={docsContent}
+                  onChange={(e) => {
+                    setDocsContent(e.target.value);
+                  }}
+                />
+              </div>
+            </TabsContent>
           </div>
         </Tabs>
       </DialogContent>
