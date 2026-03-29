@@ -8,10 +8,11 @@ import {
 } from "../ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Alert, AlertDescription } from "../ui/alert";
-import { AlertCircle, FileText, Globe } from "lucide-react";
+import { AlertCircle, FileText, Globe, Loader2, Upload } from "lucide-react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import { Button } from "../ui/button";
 
 interface AddKnowledgeModalProps {
   isOpen: boolean;
@@ -37,6 +38,53 @@ const AddKnowledge = ({
   const [error, setError] = useState<string | null>(null);
   const [docsContent, setDocsContent] = useState("");
   const [uploadFile, setUploadFile] = useState<File | null>(null);
+
+  const validateUrl = (url: string) => {
+    try {
+      const parsed = new URL(url);
+      return ["http:", "https:"].includes(parsed.protocol);
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const handleImportWrapper = async () => {
+    setError(null);
+    const data: any = { type: defaultTab };
+    if (defaultTab === "website") {
+      if (!websiteUrl) {
+        setError("Please enter a website URL.");
+        return;
+      }
+      if (!validateUrl(websiteUrl)) {
+        setError("Please enter a valid URL.");
+        return;
+      }
+      
+      const normalizedInput = websiteUrl.replace(/\/+$/, "");
+      const exists = existingSources.some((source) => {
+        if (source.type !== "website" || !source.source_url) return false;
+        const normalizeSource = source.source_url.replace(/\/$/, "");
+        return normalizeSource === normalizedInput;
+      });
+      
+      if (exists) {
+        setError("A source with this URL already exists.");
+        return;
+      }
+      
+      data.url = websiteUrl;
+    } else if (defaultTab === "text") {
+      if (!docsTitle.trim()) {
+        setError("Please enter a title.");
+        return;        
+      }      
+      if (!docsContent.trim()) {
+        setError("Please provide content.");        
+        return;
+      }
+    }
+  };
 
   return (
     <Dialog
@@ -151,7 +199,7 @@ const AddKnowledge = ({
                   }}
                 />
               </div>
-               <div className="space-y-3">
+              <div className="space-y-3">
                 <Label>Content</Label>
                 <Textarea
                   placeholder="Paste text here..."
@@ -163,6 +211,70 @@ const AddKnowledge = ({
                 />
               </div>
             </TabsContent>
+
+            <TabsContent
+              value="upload"
+              className="mt-0 space-y-4 animate-in fade-in duration-300"
+            >
+              <input
+                type="file"
+                id="csv-input-file"
+                className="hidden"
+                accept=".csv,text/csv"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file && file.size > 10 * 1024 * 1024) {
+                    setError("File size exceeds the 10MB limit.");
+                    return;
+                  }
+                  if (
+                    file &&
+                    !file.name.endsWith(".csv") &&
+                    file.type !== "text/csv"
+                  ) {
+                    setError("Invalid file type. Please upload a CSV file.");
+                    return;
+                  }
+                  setUploadFile(file || null);
+                  setError(null);
+                }}
+              />
+              <button
+                onClick={() =>
+                  document.getElementById("csv-input-file")?.click()
+                }
+                className="w-full p-4 border border-white/10 rounded-lg bg-indigo-500/10 text-indigo-200 text-sm flex gap-3 hover:bg-indigo-500/20 transition-colors cursor-pointer"
+              >
+                <Upload className="h-5 w-5 text-zinc-400" />
+                <div className="text-left">
+                  <p className="text-xs font-medium text-white">
+                    {uploadFile ? uploadFile.name : "Upload CSV File"}
+                  </p>
+                  <p className="text-xs text-zinc-500 mt-1">CSV (max 10MB)</p>
+                </div>
+              </button>
+            </TabsContent>
+          </div>
+
+          <div className="p-6 border-t border-white/5 bg-black/20 flex justify-end gap-3">
+            <Button
+              variant={"ghost"}
+              onClick={() => setIsOpen(false)}
+              className="text-zinc-400 hover:text-white hover:bg-white/5"
+            >
+              Cancel
+            </Button>
+            <Button
+              className={`bg-white min-w-27.5 text-black hover:bg-zinc-200 ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+              onClick={handleImportWrapper}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                "Import"
+              )}
+            </Button>
           </div>
         </Tabs>
       </DialogContent>
